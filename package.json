@@ -1,6 +1,6 @@
 {
   "name": "sweet-data",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Brian Gerhards (https://github.com/bgerhards)",
   "description": "plugin to pretty-print or minify XML, JSON, CSS and SQL files",
   "contributors": [
