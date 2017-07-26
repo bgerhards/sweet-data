@@ -32,4 +32,12 @@ describe('json', () => {
 
         should(SweetData.json(invalidJson)).be.rejected();
     });
+
+    it('should reject the promise on invalid json input with TypeError', () => {
+        const invalidJson = 123;
+
+        const typeError = new TypeError('Input must of type "object" or "string"');
+
+        should(SweetData.json(invalidJson)).be.rejectedWith(typeError);
+    });
 });

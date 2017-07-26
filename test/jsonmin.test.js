@@ -26,10 +26,4 @@ describe('jsonmin', () => {
 
         should(SweetData.jsonmin(json)).be.fulfilledWith(expected);
     });
-
-    it('should reject the promise on invalid json input', () => {
-        const invalidJson = 123;
-
-        should(SweetData.jsonmin(invalidJson)).be.rejected();
-    });
 })
