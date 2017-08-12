@@ -77,7 +77,7 @@ the MIT and GPL licenses:
 
 #### json(json: string | object)
 
-Returns a promise which is resolved asynchronously when the json input is parsed and beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
+Returns a promise which is resolved asynchronously when the json input (string or object) is parsed and beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
 **ES6**
 
@@ -107,7 +107,7 @@ sd.json(json)
 
 #### jsonmin(json: string | object)
 
-Returns a promise which is resolved asynchronously when the json input is parsed and minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
+Returns a promise which is resolved asynchronously when the json input (string or object) is parsed and minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
 **ES6**
 
@@ -137,6 +137,8 @@ sd.jsonmin(json)
 
 #### xml(xml: string)
 
+Returns a promise which is resolved asynchronously when the xml string input is beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
+
 **ES6**
 
 ```
@@ -165,6 +167,8 @@ sd.xml(xml)
 ### XML Minification
 
 #### xmlmin(xml: string)
+
+Returns a promise which is resolved asynchronously when the xml string input is minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
 **ES6**
 
