@@ -11,7 +11,7 @@ the MIT and GPL licenses:
 
 [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html)
 
-##Description
+## Description
 
 * `sd.xml(data)` - pretty print XML; 
 
@@ -48,17 +48,17 @@ the MIT and GPL licenses:
 
                      *`TAB` may not be visible in your editor within the web browser.
 
-**USAGE:**
+## USAGE
+
+[JSON](#json)
+
+[JSON Minification](#json-minification)
 
 `var sd = require('sweet-data'); `
 
 `var xml_pp = sd.xml(data); `
 
-`var xml_min = sd.xmlmin(data [,true]);` 
-
-`var json_pp = sd.json(data);` 
-
-`var json_min = sd.jsonmin(data);` 
+`var xml_min = sd.xmlmin(data [,true]);`
 
 `var css_pp = sd.css(data); `
 
@@ -66,8 +66,81 @@ the MIT and GPL licenses:
 
 `var sql_pp = sd.sql(data);` 
 
-`var sql_min = sd.sqlmin(data);` 
+`var sql_min = sd.sqlmin(data);`
 
 
+### JSON
 
+#### json()
 
+Returns a promise which is resolved asynchronously when the json input is parsed and beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
+
+**ES6**
+
+```
+import { SweetData as sd } from 'sweet-data';
+
+const json = { "foo": "bar" };
+
+sd.json(json)
+  .then(parsedJson => console.log(parsedJson))
+  .catch(error => console.log(error));
+```
+
+**CommonJS**
+
+```
+const sd = require('sweet-data');
+
+const json = { "foo": "bar" };
+
+sd.json(json)
+  .then(beautifiedJSON => console.log(beautifiedJSON))
+  .catch(error => console.log(error));
+```
+
+### JSON Minification
+
+#### jsonmin()
+
+Returns a promise which is resolved asynchronously when the json input is parsed and minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
+
+**ES6**
+
+```
+import { SweetData as sd } from 'sweet-data';
+
+const json = { "foo": "bar" };
+
+sd.jsonmin(json)
+  .then(minifiedJSON => console.log(minifiedJSON))
+  .catch(error => console.log(error));
+```
+
+**CommonJS**
+
+```
+const sd = require('sweet-data');
+
+const json = { "foo": "bar" };
+
+sd.jsonmin(json)
+  .then(parsedJson => console.log(parsedJson))
+  .catch(error => console.log(error));
+```
+
+### Tests
+
+Install dependencies using `npm install`
+
+Run tests
+
+```
+npm test
+```
+
+Watch tests
+
+```
+npm run test-watch
+```
