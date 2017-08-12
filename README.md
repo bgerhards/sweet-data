@@ -39,7 +39,7 @@ the MIT and GPL licenses:
 `@preserveComments` - Bool (optional, used in npp.minxml and npp.mincss only); 
                        Set this flag to true to prevent removing comments from @data; 
 
-`@Return` - String;
+`@Return` - String | Promise(String);
 
 `@indentationCount` - Numeric (optional, used to set number of indentation (per level))
 
@@ -53,6 +53,10 @@ the MIT and GPL licenses:
 [JSON](#json)
 
 [JSON Minification](#json-minification)
+
+[XML](#xml)
+
+[XML Minification](#xml-minification)
 
 `var sd = require('sweet-data'); `
 
@@ -71,7 +75,7 @@ the MIT and GPL licenses:
 
 ### JSON
 
-#### json()
+#### json(json: string | object)
 
 Returns a promise which is resolved asynchronously when the json input is parsed and beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
@@ -83,7 +87,7 @@ import { SweetData as sd } from 'sweet-data';
 const json = { "foo": "bar" };
 
 sd.json(json)
-  .then(parsedJson => console.log(parsedJson))
+  .then(beautifiedJSON => console.log(beautifiedJSON))
   .catch(error => console.log(error));
 ```
 
@@ -101,7 +105,7 @@ sd.json(json)
 
 ### JSON Minification
 
-#### jsonmin()
+#### jsonmin(json: string | object)
 
 Returns a promise which is resolved asynchronously when the json input is parsed and minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
@@ -125,7 +129,64 @@ const sd = require('sweet-data');
 const json = { "foo": "bar" };
 
 sd.jsonmin(json)
-  .then(parsedJson => console.log(parsedJson))
+  .then(minifiedJSON => console.log(minifiedJSON))
+  .catch(error => console.log(error));
+```
+
+### XML
+
+#### xml(xml: string)
+
+**ES6**
+
+```
+import { SweetData as sd } from 'sweet-data';
+
+const xml = '<?xml version="1.0" encoding="UTF-8" ?>      <!DOCTYPE foo SYSTEM "Foo.dtd"><a>          <b>bbb</b>   <!-- comment --><c/><d><soapenv:Envelope xmlns:soapenv="http://xxx" xmlns:xsd="http://yyy" xmlns:xsi="http://zzz"></soapenv>       </d><e>        <![CDATA[ <z></z> ]]></e><f><g></g></f></a>';
+
+sd.xml(xml)
+  .then(beautifiedXML => console.log(beautifiedXML))
+  .catch(error => console.log(error));
+```
+
+**CommonJS**
+
+```
+const sd = require('sweet-data');
+
+const xml = '<?xml version="1.0" encoding="UTF-8" ?>      <!DOCTYPE foo SYSTEM "Foo.dtd"><a>          <b>bbb</b>   <!-- comment --><c/><d><soapenv:Envelope xmlns:soapenv="http://xxx" xmlns:xsd="http://yyy" xmlns:xsi="http://zzz"></soapenv>       </d><e>        <![CDATA[ <z></z> ]]></e><f><g></g></f></a>';
+
+sd.xml(xml)
+  .then(beautifiedXML => console.log(beautifiedXML))
+  .catch(error => console.log(error));
+```
+
+
+### XML Minification
+
+#### xmlmin(xml: string)
+
+**ES6**
+
+```
+import { SweetData as sd } from 'sweet-data';
+
+const xml = '<?xml version="1.0" encoding="UTF-8" ?>      <!DOCTYPE foo SYSTEM "Foo.dtd"><a>          <b>bbb</b>   <!-- comment --><c/><d><soapenv:Envelope xmlns:soapenv="http://xxx" xmlns:xsd="http://yyy" xmlns:xsi="http://zzz"></soapenv>       </d><e>        <![CDATA[ <z></z> ]]></e><f><g></g></f></a>';
+
+sd.xmlmin(xml)
+  .then(minifiedXML => console.log(minifiedXML))
+  .catch(error => console.log(error));
+```
+
+**CommonJS**
+
+```
+const sd = require('sweet-data');
+
+const xml = '<?xml version="1.0" encoding="UTF-8" ?>      <!DOCTYPE foo SYSTEM "Foo.dtd"><a>          <b>bbb</b>   <!-- comment --><c/><d><soapenv:Envelope xmlns:soapenv="http://xxx" xmlns:xsd="http://yyy" xmlns:xsi="http://zzz"></soapenv>       </d><e>        <![CDATA[ <z></z> ]]></e><f><g></g></f></a>';
+
+sd.xmlmin(xml)
+  .then(minifiedXML => console.log(minifiedXML))
   .catch(error => console.log(error));
 ```
 
