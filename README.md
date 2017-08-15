@@ -4,6 +4,8 @@
 nodejs plugin to **pretty-print** or **minify**
 text in **XML**, **JSON**, **CSS**  and  **SQL** formats.
 
+**NOTE:** This library is under active development and is subject to breaking changes. Thank you for your patience and your support.
+
 **License:** Dual licensed under
 the MIT and GPL licenses:
 
@@ -11,7 +13,7 @@ the MIT and GPL licenses:
 
 [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html)
 
-## Description
+## Overview
 
 * `sd.xml(data)` - pretty print XML; 
 
@@ -31,24 +33,9 @@ the MIT and GPL licenses:
 
 * `sd.setStep([indentationCount, indentationChar])` - update indentation character(s) and character count (per depth). `SPACE` or `TAB` will use respective characters. Any other character provided will be assumed as ' '. Default values are `SPACE` and 2
 
-
-**PARAMETERS:**
-
-`@data` - String; XML, JSON, CSS or SQL text to beautify; 
-
-`@preserveComments` - Bool (optional, used in npp.minxml and npp.mincss only); 
-                       Set this flag to true to prevent removing comments from @data; 
-
-`@Return` - String | Promise(String);
-
-`@indentationCount` - Numeric (optional, used to set number of indentation (per level))
-
-`@indentationChar` - String (optional, indentation character. `SPACE` or `TAB`* will use 
-                             respective characters, other values will assume a single space (` `))
-
-                     *`TAB` may not be visible in your editor within the web browser.
-
 ## USAGE
+
+[CONFIGURATION](#configuration)
 
 [JSON](#json)
 
@@ -72,6 +59,17 @@ the MIT and GPL licenses:
 
 `var sql_min = sd.sqlmin(data);`
 
+<br />
+
+### CONFIGURATION
+
+#### setStep([indentationCount, indentationChar])
+
+Set indentation character(s) and character count (per depth). `SPACE` or `TAB` will use respective characters. Any other character provided will be assumed as ' '. 
+
+Default values are `SPACE` and 2
+
+<br />
 
 ### JSON
 
@@ -132,6 +130,8 @@ sd.jsonmin(json)
   .then(minifiedJSON => console.log(minifiedJSON))
   .catch(error => console.log(error));
 ```
+
+<br />
 
 ### XML
 
@@ -209,3 +209,20 @@ Watch tests
 ```
 npm run test-watch
 ```
+
+
+**PARAMETERS:**
+
+`@data` - String; XML, JSON, CSS or SQL text to beautify; 
+
+`@preserveComments` - Bool (optional, used in npp.minxml and npp.mincss only); 
+                       Set this flag to true to prevent removing comments from @data; 
+
+`@Return` - String | Promise(String);
+
+`@indentationCount` - Numeric (optional, used to set number of indentation (per level))
+
+`@indentationChar` - String (optional, indentation character. `SPACE` or `TAB`* will use 
+                             respective characters, other values will assume a single space (` `))
+
+    *`TAB` may not be visible in your editor within the web browser.

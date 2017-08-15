@@ -9,7 +9,7 @@ describe('jsonmin', () => {
 
     it('should return a promise', () => {
         const json = '{ "foo": "bar" }';
-        
+
         should(SweetData.jsonmin(json)).be.a.Promise();
     });
 
@@ -26,4 +26,17 @@ describe('jsonmin', () => {
 
         should(SweetData.jsonmin(json)).be.fulfilledWith(expected);
     });
+
+    it('should reject the promise on invalid json input', () => {
+      const invalidJson = '!@#$%^&*';
+
+      should(SweetData.jsonmin(invalidJson)).be.rejected();
+  });
+
+  it('should reject the promise on invalid json input with TypeError', () => {
+      const invalidJson = 123;
+
+      should(SweetData.jsonmin(invalidJson)).be
+        .rejectedWith(TypeError, { message: 'Input must of type "object" or "string"' });
+  });
 })

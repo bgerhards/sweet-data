@@ -9,7 +9,7 @@ describe('json', () => {
 
     it('should return a promise', () => {
         const json = { "foo": "bar" };
-        
+
         should(SweetData.json(json)).be.a.Promise();
     });
 
@@ -19,7 +19,7 @@ describe('json', () => {
         should(SweetData.json(json)).be.fulfilled();
     });
 
-    it('should fulfill with a string on valid json input', () => {
+    it('should fulfill with a formatted string on valid json input', () => {
         const json = { "foo": "bar" };
 
         const expected = '{\n  "foo": "bar"\n}';
@@ -36,8 +36,7 @@ describe('json', () => {
     it('should reject the promise on invalid json input with TypeError', () => {
         const invalidJson = 123;
 
-        const typeError = new TypeError('Input must of type "object" or "string"');
-
-        should(SweetData.json(invalidJson)).be.rejectedWith(typeError);
+        should(SweetData.json(invalidJson)).be
+          .rejectedWith(TypeError, { message: 'Input must of type "object" or "string"' });
     });
 });
