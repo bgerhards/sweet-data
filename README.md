@@ -35,7 +35,7 @@ the MIT and GPL licenses:
 
 ## USAGE
 
-[CONFIGURATION](#configuration)
+[Configuration](#configuration)
 
 [JSON](#json)
 
