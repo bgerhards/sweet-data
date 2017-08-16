@@ -77,7 +77,7 @@ Default values are `SPACE` and 2
 
 Returns a promise which is resolved asynchronously when the json input (string or object) is parsed and beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
-**ES6**
+##### ES6
 
 ```
 import { SweetData as sd } from 'sweet-data';
@@ -89,7 +89,7 @@ sd.json(json)
   .catch(error => console.log(error));
 ```
 
-**CommonJS**
+##### CommonJS
 
 ```
 const sd = require('sweet-data');
@@ -101,13 +101,15 @@ sd.json(json)
   .catch(error => console.log(error));
 ```
 
+<br />
+
 ### JSON Minification
 
 #### jsonmin(json: string | object)
 
 Returns a promise which is resolved asynchronously when the json input (string or object) is parsed and minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
-**ES6**
+##### ES6
 
 ```
 import { SweetData as sd } from 'sweet-data';
@@ -119,7 +121,7 @@ sd.jsonmin(json)
   .catch(error => console.log(error));
 ```
 
-**CommonJS**
+##### CommonJS
 
 ```
 const sd = require('sweet-data');
@@ -139,7 +141,7 @@ sd.jsonmin(json)
 
 Returns a promise which is resolved asynchronously when the xml string input is beautified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
-**ES6**
+##### ES6
 
 ```
 import { SweetData as sd } from 'sweet-data';
@@ -151,7 +153,7 @@ sd.xml(xml)
   .catch(error => console.log(error));
 ```
 
-**CommonJS**
+##### CommonJS
 
 ```
 const sd = require('sweet-data');
@@ -163,6 +165,7 @@ sd.xml(xml)
   .catch(error => console.log(error));
 ```
 
+<br />
 
 ### XML Minification
 
@@ -170,7 +173,7 @@ sd.xml(xml)
 
 Returns a promise which is resolved asynchronously when the xml string input is minified. The promise resolves a string accessed via `.then()`. Errors can be caught/handled via `.catch()`.
 
-**ES6**
+##### ES6
 
 ```
 import { SweetData as sd } from 'sweet-data';
@@ -182,7 +185,7 @@ sd.xmlmin(xml)
   .catch(error => console.log(error));
 ```
 
-**CommonJS**
+##### CommonJS
 
 ```
 const sd = require('sweet-data');
@@ -193,6 +196,8 @@ sd.xmlmin(xml)
   .then(minifiedXML => console.log(minifiedXML))
   .catch(error => console.log(error));
 ```
+
+<br />
 
 ### Tests
 
