@@ -34,6 +34,7 @@ export const css = (text: string) => {
 export const cssmin = (text: string, preserveComments: boolean) => {
   const str = preserveComments ? text
     : text.replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g, "");
+
   return str.replace(/\s{1,}/g, ' ')
     .replace(/\{\s{1,}/g, "{")
     .replace(/\}\s{1,}/g, "}")
