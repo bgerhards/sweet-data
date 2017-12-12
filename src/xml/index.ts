@@ -1,4 +1,4 @@
-export const xml = (text: string) => {
+export const xml = (text: string): Promise<string> => {
   return new Promise(function (resolve, reject) {
     try {
       let ar = text.replace(/>\s{0,}</g, "><")
@@ -82,7 +82,7 @@ export const xml = (text: string) => {
   });
 };
 
-export const xmlmin = (text: string, preserveComments: boolean) => {
+export const xmlmin = (text: string, preserveComments: boolean): Promise<string> => {
   return new Promise(function (resolve, reject) {
     try {
       const str = preserveComments ? text : text.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g, "");
