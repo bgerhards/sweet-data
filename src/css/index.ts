@@ -1,4 +1,4 @@
-export const css = (text: string) => {
+export const css = (text: string): string => {
   let ar = text.replace(/\s{1,}/g, ' ')
     .replace(/\{/g, "{~::~")
     .replace(/\}/g, "~::~}~::~")
@@ -31,7 +31,7 @@ export const css = (text: string) => {
   return str.replace(/^\n{1,}/, '');
 };
 
-export const cssmin = (text: string, preserveComments: boolean) => {
+export const cssmin = (text: string, preserveComments: boolean): string => {
   const str = preserveComments ? text
     : text.replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g, "");
 
