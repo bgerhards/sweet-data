@@ -1,5 +1,9 @@
-export const xml = (text: string): Promise<string> => {
+import { getShift } from '../common';
+
+export const xml = (text: string, options: object): Promise<string> => {
   return new Promise(function (resolve, reject) {
+    const shift = getShift(options);
+
     try {
       let ar = text.replace(/>\s{0,}</g, "><")
         .replace(/</g, "~::~<")
@@ -93,5 +97,3 @@ export const xmlmin = (text: string, preserveComments: boolean): Promise<string>
     }
   });
 };
-
-exports.xml = xml;

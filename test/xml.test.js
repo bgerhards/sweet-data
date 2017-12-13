@@ -1,4 +1,4 @@
-let SweetData = require('../lib/sweet-data').SweetData;
+let SweetData = require('../lib');
 let should = require('should');
 
 describe('xml', () => {
