@@ -1,4 +1,8 @@
-export const css = (text: string): string => {
+import { getShift } from '../common';
+
+export const css = (text: string, options: object): string => {
+  const shift = getShift(options);
+
   let ar = text.replace(/\s{1,}/g, ' ')
     .replace(/\{/g, "{~::~")
     .replace(/\}/g, "~::~}~::~")
@@ -15,23 +19,23 @@ export const css = (text: string): string => {
   for (ix = 0; ix < len; ix++) {
 
     if (/\{/.exec(ar[ix])) {
-      str += this.shift[deep++] + ar[ix];
+      str += shift[deep++] + ar[ix];
     } else
       if (/\}/.exec(ar[ix])) {
-        str += this.shift[--deep] + ar[ix];
+        str += shift[--deep] + ar[ix];
       } else
         if (/\*\\/.exec(ar[ix])) {
-          str += this.shift[deep] + ar[ix];
+          str += shift[deep] + ar[ix];
         }
         else {
-          str += this.shift[deep] + ar[ix];
+          str += shift[deep] + ar[ix];
         }
   }
 
   return str.replace(/^\n{1,}/, '');
 };
 
-export const cssmin = (text: string, preserveComments: boolean): string => {
+export const cssmin = (text: string, { preserveComments = false }: { preserveComments?: boolean } = {}): string => {
   const str = preserveComments ? text
     : text.replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g, "");
 
