@@ -46,9 +46,5 @@
     "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack",
     "test": "mocha",
     "test-watch": "mocha -w"
-  },
-  "dependencies": {
-    "promise-polyfill": "^6.1.0",
-    "setasap": "^2.0.0"
   }
 }

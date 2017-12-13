@@ -1,18 +1,12 @@
-var Promise = require('promise-polyfill');
-var setAsap = require('setasap');
-Promise._immediateFn = setAsap;
-
-function json(text) {
-  var that = this;
-
-  return new Promise(function(resolve, reject) {
+export const json = (text: string, { step = ' ' }: { step?: string } = {}): Promise<string> => {
+  return new Promise(function (resolve, reject) {
     try {
       if (typeof text === "string") {
-        return resolve(JSON.stringify(JSON.parse(text), null, that.step));
+        return resolve(JSON.stringify(JSON.parse(text), null, step));
       }
 
       if (typeof text === "object") {
-        return resolve(JSON.stringify(text, null, that.step));
+        return resolve(JSON.stringify(text, null, step));
       }
 
       throw new TypeError('Input must of type "object" or "string"');
@@ -20,11 +14,10 @@ function json(text) {
       reject(e);
     }
   });
-}
+};
 
-function jsonmin(text) {
-
-  return new Promise(function(resolve, reject) {
+export const jsonmin = (text: string): Promise<string> => {
+  return new Promise(function (resolve, reject) {
     try {
       if (typeof text === "string") {
         var result = JSON.stringify(JSON.parse(text))
@@ -71,7 +64,4 @@ function jsonmin(text) {
       reject(e);
     }
   });
-}
-
-exports.json = json;
-exports.jsonmin = jsonmin;
+};
