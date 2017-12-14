@@ -8,5 +8,4 @@ export { json, jsonmin } from './json';
 export { sql, sqlmin } from './sql';
 
 // XML
-
 export { xml, xmlmin } from './xml';
