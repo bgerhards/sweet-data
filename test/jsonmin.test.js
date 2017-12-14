@@ -22,9 +22,9 @@ describe('json', () => {
     it('should fulfill with a formatted string on valid json input', () => {
         const json = { "foo": "bar" };
 
-        const expected = '{\n  "foo": "bar"\n}';
+        const expected = '{\n "foo": "bar"\n}';
 
-        should(SweetData.json(json)).be.fulfilledWith(expected);
+        should(SweetData.json(json)).be.fulfilledWith(expected).catch(error => console.log(error));
     });
 
     it('should reject the promise on invalid json input', () => {

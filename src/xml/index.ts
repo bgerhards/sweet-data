@@ -19,7 +19,7 @@ export const xml = (text: string, options: object): Promise<string> => {
       for (ix = 0; ix < len; ix++) {
         // start comment or <![CDATA[...]]> or <!DOCTYPE //
         if (ar[ix].search(/<!/) > -1) {
-          str += this.shift[deep] + ar[ix];
+          str += shift[deep] + ar[ix];
           inComment = true;
           // end comment  or <![CDATA[...]]> //
           if (ar[ix].search(/-->/) > -1 || ar[ix].search(/\]>/) > -1 || ar[ix].search(/!DOCTYPE/) > -1) {
@@ -31,11 +31,8 @@ export const xml = (text: string, options: object): Promise<string> => {
             str += ar[ix];
             inComment = false;
           } else {
-            const a = /^<\w/.exec(ar[ix - 1]) && /^<\/\w/.exec(ar[ix]);
-            const b = /^<[\w:\-\.\,]+/.exec(ar[ix - 1]) as any;
-            const c = /^<\/[\w:\-\.\,]+/.exec(ar[ix])[0].replace('/', '');
-            // <elm></elm> //
-            if (a && (b == c)) {
+            if( /^<\w/.exec(ar[ix-1]) && /^<\/\w/.exec(ar[ix]) &&
+            (/^<[\w:\-\.\,]+/.exec(ar[ix-1]) as any) == /^<\/[\w:\-\.\,]+/.exec(ar[ix])[0].replace('/','')) {
               str += ar[ix];
               if (!inComment) {
                 deep--;
@@ -43,27 +40,27 @@ export const xml = (text: string, options: object): Promise<string> => {
             } else {
               // <elm> //
               if (ar[ix].search(/<\w/) > -1 && ar[ix].search(/<\//) === -1 && ar[ix].search(/\/>/) === -1) {
-                str = !inComment ? str += this.shift[deep++] + ar[ix] : str += ar[ix];
+                str = !inComment ? str += shift[deep++] + ar[ix] : str += ar[ix];
               } else {
                 // <elm>...</elm> //
                 if (ar[ix].search(/<\w/) > -1 && ar[ix].search(/<\//) > -1) {
-                  str = !inComment ? str += this.shift[deep] + ar[ix] : str += ar[ix];
+                  str = !inComment ? str += shift[deep] + ar[ix] : str += ar[ix];
                 } else {
                   // </elm> //
                   if (ar[ix].search(/<\//) > -1) {
-                    str = !inComment ? str += this.shift[--deep] + ar[ix] : str += ar[ix];
+                    str = !inComment ? str += shift[--deep] + ar[ix] : str += ar[ix];
                   } else {
                     // <elm/> //
                     if (ar[ix].search(/\/>/) > -1) {
-                      str = !inComment ? str += this.shift[deep] + ar[ix] : str += ar[ix];
+                      str = !inComment ? str += shift[deep] + ar[ix] : str += ar[ix];
                     } else {
                       // <? xml ... ?> //
                       if (ar[ix].search(/<\?/) > -1) {
-                        str += this.shift[deep] + ar[ix];
+                        str += shift[deep] + ar[ix];
                       } else {
                         // xmlns //
                         if (ar[ix].search(/xmlns\:/) > -1 || ar[ix].search(/xmlns\=/) > -1) {
-                          str += this.shift[deep] + ar[ix];
+                          str += shift[deep] + ar[ix];
                         }
 
                         else {
