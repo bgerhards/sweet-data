@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.json = function (text, _a) {
+export var json = function (text, _a) {
     var _b = (_a === void 0 ? {} : _a).step, step = _b === void 0 ? ' ' : _b;
     return new Promise(function (resolve, reject) {
         try {
@@ -17,7 +15,7 @@ exports.json = function (text, _a) {
         }
     });
 };
-exports.jsonmin = function (text) {
+export var jsonmin = function (text) {
     return new Promise(function (resolve, reject) {
         try {
             if (typeof text === "string") {

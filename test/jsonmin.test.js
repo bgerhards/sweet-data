@@ -1,42 +1,42 @@
-let SweetData = require('../lib/sweet-data').SweetData;
+let SweetData = require('../lib');
 let should = require('should');
 
-describe('jsonmin', () => {
+describe('json', () => {
 
     it('should exist', () => {
-        should.exist(SweetData.jsonmin);
+        should.exist(SweetData.json);
     });
 
     it('should return a promise', () => {
-        const json = '{ "foo": "bar" }';
+        const json = { "foo": "bar" };
 
-        should(SweetData.jsonmin(json)).be.a.Promise();
+        should(SweetData.json(json)).be.a.Promise();
     });
 
     it('should fulfill the promise on valid json input', () => {
-        const json = '{ "foo": "bar" }';
+        const json = { "foo": "bar" };
 
-        should(SweetData.jsonmin(json)).be.fulfilled();
+        should(SweetData.json(json)).be.fulfilled();
     });
 
-    it('should fulfill with a string on valid json input', () => {
-        const json = '{"menu":{"id": "file","value": \n[[1,2,3],[4,5,6] ],\n"popup":{"menuitem":[{"value":    ["one","two"],\n"onclick":"CreateNewDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}';
+    it('should fulfill with a formatted string on valid json input', () => {
+        const json = { "foo": "bar" };
 
-        const expected = '{"menu":{"id":"file","value":[[1,2,3],[4,5,6]],"popup":{"menuitem":[{"value":["one","two"],"onclick":"CreateNewDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}';
+        const expected = '{\n "foo": "bar"\n}';
 
-        should(SweetData.jsonmin(json)).be.fulfilledWith(expected);
+        should(SweetData.json(json)).be.fulfilledWith(expected).catch(error => console.log(error));
     });
 
     it('should reject the promise on invalid json input', () => {
-      const invalidJson = '!@#$%^&*';
+        const invalidJson = '!@#$%^&*';
 
-      should(SweetData.jsonmin(invalidJson)).be.rejected();
-  });
+        should(SweetData.json(invalidJson)).be.rejected();
+    });
 
-  it('should reject the promise on invalid json input with TypeError', () => {
-      const invalidJson = 123;
+    it('should reject the promise on invalid json input with TypeError', () => {
+        const invalidJson = 123;
 
-      should(SweetData.jsonmin(invalidJson)).be
-        .rejectedWith(TypeError, { message: 'Input must of type "object" or "string"' });
-  });
-})
+        should(SweetData.json(invalidJson)).be
+          .rejectedWith(TypeError, { message: 'Input must of type "object" or "string"' });
+    });
+});

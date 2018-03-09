@@ -1,4 +1,3 @@
-"use strict";
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -16,13 +15,12 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var common_1 = require("../common");
-exports.sql = function (text, _a) {
+import { getShift } from '../common';
+export var sql = function (text, _a) {
     if (_a === void 0) { _a = {}; }
     var _b = _a.step, step = _b === void 0 ? ' ' : _b, rest = __rest(_a, ["step"]);
     console.log(step);
-    var shift = common_1.getShift(__assign({}, rest));
+    var shift = getShift(__assign({}, rest));
     var ar_by_quote = text.replace(/\s{1,}/g, " ")
         .replace(/\'/ig, "~::~\'")
         .split('~::~'), len = ar_by_quote.length, ar = [], deep = 0, tab = step, inComment = true, inQuote = false, parenthesisLevel = 0, str = '', ix = 0;
@@ -60,7 +58,7 @@ exports.sql = function (text, _a) {
     str = str.replace(/^\n{1,}/, '').replace(/\n{1,}/g, "\n");
     return str;
 };
-exports.sqlmin = function (text) {
+export var sqlmin = function (text) {
     return text.replace(/\s{1,}/g, " ").replace(/\s{1,}\(/, "(").replace(/\s{1,}\)/, ")");
 };
 function isSubquery(str, parenthesisLevel) {

@@ -1,4 +1,4 @@
-let SweetData = require('../lib/sweet-data').SweetData;
+let SweetData = require('../lib');
 let should = require('should');
 
 describe('xmlmin', () => {
@@ -22,7 +22,7 @@ describe('xmlmin', () => {
     it('should reject the promise on invalid xml input with TypeError', () => {
       const invalidxml = 123;
 
-      const typeError = new TypeError('Input must of type "object" or "string"');
+      const typeError = new TypeError('text.replace is not a function');
 
       should(SweetData.xmlmin(invalidxml)).be.rejectedWith(typeError);
     });

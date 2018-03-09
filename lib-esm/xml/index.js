@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var common_1 = require("../common");
-exports.xml = function (text, options) {
+import { getShift } from '../common';
+export var xml = function (text, options) {
     return new Promise(function (resolve, reject) {
-        var shift = common_1.getShift(options);
+        var shift = getShift(options);
         try {
             var ar = text.replace(/>\s{0,}</g, "><")
                 .replace(/</g, "~::~<")
@@ -83,7 +81,7 @@ exports.xml = function (text, options) {
         }
     });
 };
-exports.xmlmin = function (text, preserveComments) {
+export var xmlmin = function (text, preserveComments) {
     return new Promise(function (resolve, reject) {
         try {
             var str = preserveComments ? text : text.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g, "");
